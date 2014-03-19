@@ -12,7 +12,7 @@ node[:deploy].each do |app_name, deploy|
   execute "bower install" do
     cwd "#{deploy[:deploy_to]}/current/docs-template"
     user "deploy"
-    environment ({'HOME' => '/home/alfred'})
+    environment ({'HOME' => '/home/deploy'})
   end
 
   script "generate_docs" do
