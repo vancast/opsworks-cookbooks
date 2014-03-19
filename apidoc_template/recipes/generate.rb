@@ -9,13 +9,10 @@ node[:deploy].each do |app_name, deploy|
     EOH
   end
 
-  script "generate_docs" do
-    interpreter "bash"
-    user "#{deploy[:user]}"
+  execute "bower install" do
     cwd "#{deploy[:deploy_to]}/current/docs-template"
-    code <<-EOH
-    bower install
-    EOH
+    user "deploy"
+    environment ({'HOME' => '/home/alfred'})
   end
 
   script "generate_docs" do
