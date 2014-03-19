@@ -5,6 +5,7 @@ node[:deploy].each do |app_name, deploy|
     user "root"
     cwd "#{deploy[:deploy_to]}/current"
     code <<-EOH
+    npm install -g grunt-cli
     grunt apidoc
     EOH
   end
