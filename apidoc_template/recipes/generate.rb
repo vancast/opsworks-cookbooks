@@ -4,7 +4,7 @@ node[:deploy].each do |app_name, deploy|
     interpreter "bash"
     user "root"
     cwd "#{deploy[:deploy_to]}/current"
-    code <<--EOH
+    code <<-EOH
     npm install -g bower
     EOH
   end
