@@ -1,21 +1,12 @@
 node[:deploy].each do |app_name, deploy|
 
-  script "install_bower_deps" do
+  script "generate_docs" do
     interpreter "bash"
     user "root"
-    cwd "#{deploy[:deploy_to]}/current/docs-template"
+    cwd "#{deploy[:deploy_to]}/current"
     code <<-EOH
-    npm install bower -g
-    bower install
+    grunt apidoc
     EOH
   end
 
-  script "generate_docs" do
-      interpreter "bash"
-      user "root"
-      cwd "#{deploy[:deploy_to]}/current"
-      code <<-EOH
-      grunt apidoc
-      EOH
-  end
 end
