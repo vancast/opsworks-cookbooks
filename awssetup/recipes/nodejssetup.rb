@@ -7,7 +7,7 @@ node[:deploy].each do |app_name, deploy|
 
       variables(
         :access =>     (node[:aws][:access] rescue nil),
-        :secret =>     (node[:aws][:access] rescue nil)
+        :secret =>     (node[:aws][:secret] rescue nil)
       )
 
      only_if do
