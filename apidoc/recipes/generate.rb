@@ -1,5 +1,5 @@
 node[:deploy].each do |app_name, deploy|
-  if File.directory?("#{deploy[:deploy_to]}/current/docs-template")
+  if {File.directory?("#{deploy[:deploy_to]}/current/docs-template") && !File.directory?("#{deploy[:deploy_to]}/current/public/docs")}
     script "install_bower" do
       interpreter "bash"
       user "root"
@@ -23,9 +23,6 @@ node[:deploy].each do |app_name, deploy|
       npm install -g grunt-cli
       grunt apidoc
       EOH
-    end
-    not_if do
-      File.directory?("#{deploy[:deploy_to]}/current/public/docs")
     end
   end
 end
