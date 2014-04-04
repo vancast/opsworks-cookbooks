@@ -24,5 +24,8 @@ node[:deploy].each do |app_name, deploy|
       grunt apidoc
       EOH
     end
+    not_if do
+      File.directory?("#{deploy[:deploy_to]}/current/public/docs")
+    end
   end
 end
